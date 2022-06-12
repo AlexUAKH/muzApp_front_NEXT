@@ -1,15 +1,16 @@
-import React, { FC, ReactElement, useEffect } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Container from "@mui/material/Container";
 import styles from "../styles/MainLayout.module.scss";
 import { useState } from "react";
 
 interface Props {
-  children: ReactElement;
+  children: ReactNode;
 }
 
-const MainLayout: FC<Props> = (props: Props) => {
+const MainLayout: FC<Props> = props => {
   const [loading, setLoading] = useState(true);
   const { children } = props;
 
@@ -23,12 +24,16 @@ const MainLayout: FC<Props> = (props: Props) => {
         <title>Music library</title>
         <meta
           name="description"
-          content="Muzic library with player and comments"
+          content="Music library with player and comments"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        <Container>
+          {children}
+        </Container>
+      </main>
       <Footer />
     </div>
   );

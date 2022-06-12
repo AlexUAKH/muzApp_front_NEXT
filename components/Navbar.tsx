@@ -16,11 +16,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import {useRouter} from "next/router";
+import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined';
 
 const drawerWidth = 240;
-const menu = ["All mail", "Trash", "Spam"];
+const menu = [
+  {title: "Головна", to: '/', icon: <HomeOutlinedIcon />},
+  {title: "Слухати", to: '/tracks', icon: <MusicNoteOutlinedIcon />},
+  {title: "Альбоми", to: '/albom', icon: <QueueMusicIcon />},
+  ];
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -55,6 +61,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function Navbar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const router = useRouter();
+
+  React.useEffect(() => {
+    console.log("rrr: ", router)
+  },[]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -109,14 +120,18 @@ export default function Navbar() {
         <Divider />
 
         <List>
-          {menu.map((text, index) => (
-            <ListItem key={text} disablePadding>
+          {menu.map(({title, to, icon}, index) => (
+            <ListItem
+              key={title}
+              selected={router.route === to}
+              disablePadding
+              onClick={() => router.push(to)}
+            >
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {icon}
                 </ListItemIcon>
-                <ListItemText primary={text} />
-                <ChevronRightIcon />
+                <ListItemText primary={title} />
               </ListItemButton>
             </ListItem>
           ))}
