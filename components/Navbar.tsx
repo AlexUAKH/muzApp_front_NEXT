@@ -24,8 +24,8 @@ import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined';
 const drawerWidth = 240;
 const menu = [
   {title: "Головна", to: '/', icon: <HomeOutlinedIcon />},
-  {title: "Слухати", to: '/tracks', icon: <MusicNoteOutlinedIcon />},
-  {title: "Альбоми", to: '/albom', icon: <QueueMusicIcon />},
+  {title: "Слухати", to: '/songs', icon: <MusicNoteOutlinedIcon />},
+  {title: "Альбоми", to: '/songs/albom', icon: <QueueMusicIcon />},
   ];
 
 interface AppBarProps extends MuiAppBarProps {
