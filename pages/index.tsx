@@ -18,14 +18,14 @@ const Home: NextPage = () => {
           <Button
             variant="outlined"
             startIcon={<MusicNoteOutlinedIcon />}
-            onClick={() => router.push('/tracks')}
+            onClick={() => router.push('/songs')}
           >
             Слухати
           </Button>
           <Button
             variant="outlined"
             startIcon={<QueueMusicIcon />}
-            onClick={() => router.push('/albom')}
+            onClick={() => router.push('/songs/albom')}
           >
             Альбом
           </Button>
