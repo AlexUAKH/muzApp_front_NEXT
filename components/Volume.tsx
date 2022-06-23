@@ -20,8 +20,9 @@ const Volume = () => {
             border: 'none',
           },
           '& .MuiSlider-thumb': {
-            width: 24,
+            width: 12,
             height: 24,
+            borderRadius: 0,
             backgroundColor: '#fff',
             '&:before': {
               boxShadow: '0 4px 8px rgba(0,0,0,0.4)',
