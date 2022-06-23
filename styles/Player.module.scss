@@ -1,0 +1,14 @@
+.player {
+  position: sticky;
+  max-height: 80px;
+  height: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid black;
+  border-radius: 1rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 8px 1rem;
+}

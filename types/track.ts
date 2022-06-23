@@ -2,7 +2,7 @@ export interface IComment {
   _id: string;
   created_at: number;
   updated_at: number;
-  username: number;
+  username: string;
   text: string;
 }
 
