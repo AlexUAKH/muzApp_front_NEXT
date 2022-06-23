@@ -7,7 +7,7 @@
 import {useState} from "react";
 
 export default function useInput(validation) {
-  const error: string = '';
+  const error: boolean = false;
   const [value, setValue] = useState('');
   const [touched, setTouched] = useState(false);
   const [helperText, setHelperText] = useState('');
