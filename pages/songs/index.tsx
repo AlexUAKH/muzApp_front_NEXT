@@ -12,7 +12,8 @@ import {ITrack} from "../../types/track";
 
 const tracks: ITrack[] = [
   {_id: 'dfffd', title: "This is a way", artist: "E-Type", listenings: 0, picture: "https://static2.tgstat.ru/channels/_0/e9/e93447afc4c119f284ff3dcef5da9d84.jpg", text: null, audio: "ffvf", comments:[{}]},
-  {_id: 'd', title: "khygyg yug yug uyg oooo pppp kkkk jjjj mmmm", artist: "E-Type", listenings: 1, picture: "https://static4.tgstat.ru/channels/_100/9f/9fd8eb1c2aacf668fba203b0a26a7046.jpg", text: null, audio: "gbbf", comments:[{}]}
+  {_id: 'd', title: "khygyg yug yug uyg oooo pppp kkkk jjjj mmmm", artist: "E-Type", listenings: 1, picture: "https://static4.tgstat.ru/channels/_100/9f/9fd8eb1c2aacf668fba203b0a26a7046.jpg", text: null, audio: "gbbf", comments:[{}]},
+  {_id: 'd4', title: "khygyg yug yug uyg oooo pppp kkkk jjjj mmmm", artist: "E-Type", listenings: 1, picture: "https://static4.tgstat.ru/channels/_100/9f/9fd8eb1c2aacf668fba203b0a26a7046.jpg", text: null, audio: "https://api-vk.com/mp3ts.song.php?id=371745457_456387604&vk_hash=777_d6b00303d9da7d3527_cf23b6a921475371bd&a=Scorpions&t=Still+Loving+You", comments:[{}]}
 ]
 
 const Tracks: NextPage = () => {
