@@ -1,18 +1,20 @@
-import React, { FC, ReactNode, useEffect } from "react";
+import React, {FC, ReactNode, useEffect} from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "@mui/material/Container";
 import styles from "../styles/MainLayout.module.scss";
-import { useState } from "react";
+import {useState} from "react";
+import Player from "../components/Player";
+import {Box} from "@mui/system";
 
 interface Props {
   children: ReactNode;
 }
 
-const MainLayout: FC<Props> = props => {
+const MainLayout: FC<Props> = ({children}) => {
   const [loading, setLoading] = useState(true);
-  const { children } = props;
+  const active = true;
 
   useEffect(() => setLoading(false));
 
@@ -26,15 +28,17 @@ const MainLayout: FC<Props> = props => {
           name="description"
           content="Music library with player and comments"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico"/>
       </Head>
-      <Navbar />
+      <Navbar/>
       <main className={styles.main}>
         <Container>
           {children}
         </Container>
       </main>
-      <Footer />
+      {active && <Box sx={{height: '20px'}}></Box>}
+      <Player />
+      <Footer/>
     </div>
   );
 };
