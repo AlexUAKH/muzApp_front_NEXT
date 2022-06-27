@@ -13,7 +13,7 @@ export const setDuration = (payload: number): PlayerAction => {
 export const setVolume = (payload: number): PlayerAction => {
   return {type: PlayerActionTypes.SET_VOLUME, payload}
 }
-export const setCurentTime = (payload: number): PlayerAction => {
+export const setCurrentTime = (payload: number): PlayerAction => {
   return {type: PlayerActionTypes.SET_CURRENT_TIME, payload}
 }
 export const setActive = (payload: ITrack): PlayerAction => {
