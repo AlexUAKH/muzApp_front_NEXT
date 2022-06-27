@@ -1,13 +1,10 @@
 import React from "react";
 import type { NextPage } from "next";
-import styles from "../../styles/Albom.module.scss";
-import MainLayout from "../../layouts/MainLayout";
+// import styles from "../../styles/Albom.module.scss";
 
 const Albom: NextPage = () => {
   return (
-    <MainLayout>
       <div>Albomm</div>
-    </MainLayout>
   )
 }
 
