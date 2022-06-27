@@ -1,12 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Box, Grid, Slider, Typography} from "@mui/material";
 import {styled, useTheme} from "@mui/material/styles";
-
-const position: number = 15;
-const setCurrentTime = (e: React.ChangeEvent) => {
-  console.log(e)
-};
-const duration: number = 100;
+import {formatDuration} from "../heloers/formatDuration";
 
 const TinyText = styled(Typography)({
   fontSize: '0.75rem',
@@ -15,33 +10,38 @@ const TinyText = styled(Typography)({
   letterSpacing: 0.2,
 });
 
-const PlayProgress = () => {
+interface PlayProgressProps {
+  changeCurrentTime: Function;
+  duration: number;
+  currentTime: number;
+}
+
+const PlayProgress: FC<PlayProgressProps> = ({duration, currentTime, changeCurrentTime}) => {
   const theme = useTheme();
-  function formatDuration(value: number) {
-    const minute = Math.floor(value / 60);
-    const secondLeft = value - minute * 60;
-    return `${minute}:${secondLeft < 9 ? `0${secondLeft}` : secondLeft}`;
-  }
+
+
 
   return (
     <Grid container direction="column" gap={1}>
       <Slider
         aria-label="time-indicator"
         size="small"
-        value={position}
+        value={currentTime}
         min={0}
         step={1}
         max={duration}
-        onChange={(_, value) => setCurrentTime(value as number)}
+        onChange={(_, value) => changeCurrentTime(value as number)}
         sx={{
           color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
           height: 12,
           '& .MuiSlider-thumb': {
+            borderRadius: 0,
+            color: '#fff',
             width: 14,
-            height: 16,
+            height: 20,
             transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
             '&:before': {
-              boxShadow: '0 2px 2px 0 rgba(0,0,0,0.4)',
+              boxShadow: '0 2px 4px 0 rgba(0,0,0,0.4)',
             },
             '&:hover, &.Mui-focusVisible': {
               boxShadow: `0px 0px 0px 4px ${
@@ -51,7 +51,7 @@ const PlayProgress = () => {
               }`,
             },
             '&.Mui-active': {
-              width: 20,
+              width: 16,
               height: 20,
             },
           },
@@ -68,8 +68,8 @@ const PlayProgress = () => {
           mt: -2,
         }}
       >
-        <TinyText>{formatDuration(position)}</TinyText>
-        <TinyText>-{formatDuration(duration - position)}</TinyText>
+        <TinyText>{formatDuration(currentTime)}</TinyText>
+        <TinyText>-{formatDuration(duration - currentTime)}</TinyText>
       </Box>
     </Grid>
   );

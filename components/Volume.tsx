@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {VolumeDownRounded, VolumeUpRounded} from "@mui/icons-material";
 import {useTheme} from "@mui/material/styles";
 import {Slider, Stack} from "@mui/material";
 
-const Volume = () => {
+interface VolumeProps {
+  volume: number;
+  changeVolume: Function;
+}
+
+const Volume: FC<VolumeProps> = ({volume, changeVolume}) => {
   const theme = useTheme()
+
   const lightIconColor =
     theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
 
@@ -13,7 +19,11 @@ const Volume = () => {
       <VolumeDownRounded htmlColor={lightIconColor} />
       <Slider
         aria-label="Volume"
-        defaultValue={30}
+        defaultValue={0}
+        value={volume}
+        step={.1}
+        min={0}
+        max={1}
         sx={{
           color: theme.palette.mode === 'dark' ? '#fff' : 'rgba(0,0,0,0.87)',
           '& .MuiSlider-track': {
@@ -32,6 +42,7 @@ const Volume = () => {
             },
           },
         }}
+        onChange={(_, value) => changeVolume(value as number)}
       />
       <VolumeUpRounded htmlColor={lightIconColor} />
     </Stack>

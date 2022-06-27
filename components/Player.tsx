@@ -1,37 +1,78 @@
-import React from 'react';
-import {ITrack} from "../types/track";
+import React, {useCallback, useEffect} from 'react';
 import {Box} from "@mui/material";
 import styles from "../styles/Player.module.scss";
 import PlayProgress from "./PlayProgress";
 import Volume from "./Volume";
 import TrackDescription from "./TrackDescription";
 import PlayControl from "./PlayControl";
+import {useActions} from "../hooks/useActions";
+import {useTypeSelector} from "../hooks/useTypeSelector";
 
-const track: ITrack = {
-  _id: 'd',
-  title: "khygyg yug yug uyg oooo pppp kkkk jjjj mmmm",
-  artist: "E-Type",
-  listenings: 1,
-  picture: "https://static4.tgstat.ru/channels/_100/9f/9fd8eb1c2aacf668fba203b0a26a7046.jpg",
-  text: null,
-  audio: "https://api-vk.com/mp3ts.song.php?id=371745457_456387604&vk_hash=777_d6b00303d9da7d3527_cf23b6a921475371bd&a=Scorpions&t=Still+Loving+You",
-  comments: [{ _id:"4444", text: "eded", username: "rewq", created_at:443222, updated_at: 444444 }]
-}
-const active: boolean = false;
+let audio: any;
 
 const Player: React.FC = () => {
-  if (active) return null;
+  const { pause, active, volume, duration, currentTime  } = useTypeSelector(state => state.player);
+  const { setVolume, setCurrentTime, setDuration } = useActions();
+
+  const setAudio = useCallback( () => {
+    if (!!active) {
+      audio.src = active.audio;
+      console.log("setAudio");
+      audio.onloadedmetadata = () => {
+        setDuration(Math.floor(audio.duration));
+      }
+      audio.ontimeupdate = () => {
+        setCurrentTime(Math.floor(audio.currentTime));
+      }
+      // playTrack();
+    }
+  }, [active, setCurrentTime, setDuration])
+
+  useEffect(() => {
+    if (!audio) {
+      audio = new Audio();
+      console.log("initialize audio")
+    } else {
+      setAudio();
+      console.log("setup audio")
+    }
+  },[active, setAudio])
+
+  useEffect(() => {
+    if (pause) {
+      audio.pause();
+    } else {
+      audio.play()
+    }
+  },[pause])
+
+  const changeCurrentTime = (volume: number) => {
+    audio.currentTime = volume;
+    setCurrentTime(volume)
+  }
+
+  const changeVolume = (volume: number) => {
+    audio.volume = volume;
+    setVolume(volume)
+  }
+
+  if (active === null) return null;
+
   return (
     <Box className={styles.player}>
       <PlayControl />
       <Box sx={{mr: 2, maxWidth: "250px"}}>
-        <TrackDescription title={track.title} artist={track.artist} />
+        <TrackDescription title={active.title} artist={active.artist} />
       </Box>
       <Box sx={{maxWidth: '500px', width: '100%'}}>
-        <PlayProgress />
+        <PlayProgress
+          changeCurrentTime={changeCurrentTime}
+          currentTime={currentTime}
+          duration={duration}
+        />
       </Box>
       <Box sx={{ml: 'auto'}}>
-        <Volume />
+        <Volume volume={volume} changeVolume={changeVolume} />
       </Box>
     </Box>
   );
