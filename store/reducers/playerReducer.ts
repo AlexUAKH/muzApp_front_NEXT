@@ -1,12 +1,11 @@
 import {PlayerAction, PlayerActionTypes, PlayerState} from "../../types/player";
-import {act} from "react-dom/test-utils";
 
 const  initialState: PlayerState = {
   active: null,
   pause: true,
   duration: 0,
   currentTime: 0,
-  volume: 0
+  volume: .3
 }
 
 export const playerReducer = (state = initialState, action: PlayerAction): PlayerState => {

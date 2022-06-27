@@ -1,5 +1,5 @@
 import * as PlayerActionCreators from "./player"
 
-export default {
+export const ActionCreators = {
   ...PlayerActionCreators
 }

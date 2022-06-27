@@ -1,10 +1,10 @@
 import {PlayerAction, PlayerActionTypes} from "../../types/player";
 import {ITrack} from "../../types/track";
 
-export const plsyTarck = (): PlayerAction => {
+export const playTrack = (): PlayerAction => {
   return {type: PlayerActionTypes.PLAY}
 }
-export const pauseTarck = (): PlayerAction => {
+export const pauseTrack = (): PlayerAction => {
   return {type: PlayerActionTypes.PAUSE}
 }
 export const setDuration = (payload: number): PlayerAction => {
