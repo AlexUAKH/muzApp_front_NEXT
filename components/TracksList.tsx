@@ -3,12 +3,14 @@ import styles from "../styles/Tracks.module.scss";
 import TracksListItem from "./TracksListItem";
 import {Card, Stack} from "@mui/material";
 import {ITrack} from "../types/track";
+import {useTypeSelector} from "../hooks/useTypeSelector";
 
 interface TracksListProps {
   tracks: ITrack[]
 }
 
 const TracksList: FC<TracksListProps> = ({tracks}) => {
+  const {active, pause} = useTypeSelector(state => state.player)
 
   return (
     <Card className={styles['tracks__list-wraper']}>
@@ -18,6 +20,7 @@ const TracksList: FC<TracksListProps> = ({tracks}) => {
             <TracksListItem
               key={track._id}
               track={track}
+              current={active?._id === track._id && !pause}
             />
           )
         }
