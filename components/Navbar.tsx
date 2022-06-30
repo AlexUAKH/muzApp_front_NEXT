@@ -1,9 +1,9 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import {styled, useTheme} from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
@@ -23,10 +23,10 @@ import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined';
 
 const drawerWidth = 240;
 const menu = [
-  {title: "Головна", to: '/', icon: <HomeOutlinedIcon />},
-  {title: "Слухати", to: '/songs', icon: <MusicNoteOutlinedIcon />},
-  {title: "Альбоми", to: '/songs/albom', icon: <QueueMusicIcon />},
-  ];
+  {title: "Головна", to: '/', icon: <HomeOutlinedIcon/>},
+  {title: "Слухати", to: '/songs', icon: <MusicNoteOutlinedIcon/>},
+  {title: "Альбоми", to: '/songs/albom', icon: <QueueMusicIcon/>},
+];
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -34,7 +34,7 @@ interface AppBarProps extends MuiAppBarProps {
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== "open"
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({theme, open}) => ({
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
@@ -49,7 +49,7 @@ const AppBar = styled(MuiAppBar, {
   })
 }));
 
-const DrawerHeader = styled("div")(({ theme }) => ({
+const DrawerHeader = styled("div")(({theme}) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
@@ -65,7 +65,7 @@ export default function Navbar() {
 
   React.useEffect(() => {
     console.log("rrr: ", router)
-  },[]);
+  }, [router]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -76,8 +76,8 @@ export default function Navbar() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+    <Box sx={{display: "flex"}}>
+      <CssBaseline/>
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -85,12 +85,12 @@ export default function Navbar() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+            sx={{mr: 2, ...(open && {display: "none"})}}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Spotify clo
+            Spotify clone
           </Typography>
         </Toolbar>
       </AppBar>
@@ -111,27 +111,28 @@ export default function Navbar() {
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon/>
             ) : (
-              <ChevronRightIcon />
+              <ChevronRightIcon/>
             )}
           </IconButton>
         </DrawerHeader>
-        <Divider />
+        <Divider/>
 
         <List>
           {menu.map(({title, to, icon}, index) => (
             <ListItem
               key={title}
-              selected={router.route === to}
               disablePadding
-              onClick={() => router.push(to)}
+              onClick={() => {router.push(to); handleDrawerClose()}}
             >
-              <ListItemButton>
+              <ListItemButton
+                selected={router.route === to}
+              >
                 <ListItemIcon>
                   {icon}
                 </ListItemIcon>
-                <ListItemText primary={title} />
+                <ListItemText primary={title}/>
               </ListItemButton>
             </ListItem>
           ))}
