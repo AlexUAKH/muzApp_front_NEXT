@@ -5,7 +5,7 @@ import {formatDuration} from "../heloers/formatDuration";
 
 const TinyText = styled(Typography)({
   fontSize: '0.75rem',
-  opacity: 0.38,
+  opacity: 0.7,
   fontWeight: 500,
   letterSpacing: 0.2,
 });
@@ -18,8 +18,6 @@ interface PlayProgressProps {
 
 const PlayProgress: FC<PlayProgressProps> = ({duration, currentTime, changeCurrentTime}) => {
   const theme = useTheme();
-
-
 
   return (
     <Grid container direction="column" gap={1}>

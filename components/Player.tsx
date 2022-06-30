@@ -31,10 +31,8 @@ const Player: React.FC = () => {
   useEffect(() => {
     if (!audio) {
       audio = new Audio();
-      console.log("initialize audio")
     } else {
       setAudio();
-      console.log("setup audio")
     }
   },[active, setAudio])
 
