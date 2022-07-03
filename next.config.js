@@ -7,8 +7,9 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")]
   },
   images: {
-    domains: ['static2.tgstat.ru','static4.tgstat.ru'],
+    domains: ['static2.tgstat.ru','static4.tgstat.ru','localhost'],
   },
+
 };
 
 module.exports = nextConfig;
