@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {
-  API_URL: "https://localhost:3000/api",
+export const config = {
+  API_URL: "https://localhost:4000",
   TIMEOUT: 10000
 }
+
