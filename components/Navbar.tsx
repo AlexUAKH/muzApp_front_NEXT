@@ -63,10 +63,6 @@ export default function Navbar() {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
 
-  React.useEffect(() => {
-    console.log("rrr: ", router)
-  }, [router]);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
