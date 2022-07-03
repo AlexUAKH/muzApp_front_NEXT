@@ -39,7 +39,7 @@ const TracksListItem: FC<TracksListItemProps> = ({ track, current = false }) => 
       setActive(track);
       playTrack();
     }
-  }, [active?._id, pause, pauseTrack, playTrack, setActive, track])
+  }, [active?._id, pause])
 
 
   return (
@@ -54,7 +54,7 @@ const TracksListItem: FC<TracksListItemProps> = ({ track, current = false }) => 
           <PlayCircleOutlineIcon fontSize="large" />
         )}
       </IconButton>
-      <Image src={track.picture} width={60} height={60} alt="Track cover" />
+      <Image src={`http://localhost:4000/${track.picture}`} width={60} height={60} alt="Track cover" />
       <Box sx={{ ml: 2, maxWidth: "300px" }}>
         <TrackDescription title={track.title} artist={track.artist} />
       </Box>

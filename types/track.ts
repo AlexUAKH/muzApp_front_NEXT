@@ -17,3 +17,24 @@ export interface ITrack {
   comments: IComment[];
 }
 
+export interface TrackState {
+  tracks: ITrack[],
+  error: string
+}
+
+export enum TrackActionsType {
+  FETCH_TRACKS = "FETCH_TRACKS",
+  FETCH_TRACKS_ERROR = "FETCH_TRACKS_ERROR"
+}
+
+interface FetchTracksAction {
+  type: TrackActionsType.FETCH_TRACKS,
+  payload: ITrack[]
+}
+
+interface FetchTracksErrorAction {
+  type: TrackActionsType.FETCH_TRACKS_ERROR,
+  payload: string
+}
+
+export type TracksAction = FetchTracksAction | FetchTracksErrorAction;

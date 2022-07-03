@@ -12,6 +12,8 @@ interface TracksListProps {
 const TracksList: FC<TracksListProps> = ({tracks}) => {
   const {active, pause} = useTypeSelector(state => state.player)
 
+  if (!tracks.length) return (<h3>Упс, пісень для відображення немає</h3>);
+
   return (
     <Card className={styles['tracks__list-wraper']}>
       <Stack spacing={2}>
