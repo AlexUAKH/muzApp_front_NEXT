@@ -5,7 +5,8 @@ const  initialState: PlayerState = {
   pause: true,
   duration: 0,
   currentTime: 0,
-  volume: .3
+  volume: .3,
+  muted: false
 }
 
 export const playerReducer = (state = initialState, action: PlayerAction): PlayerState => {
@@ -28,6 +29,9 @@ export const playerReducer = (state = initialState, action: PlayerAction): Playe
 
     case PlayerActionTypes.SET_VOLUME:
       return { ...state, volume: action.payload }
+
+    case PlayerActionTypes.SET_MUTED:
+      return { ...state, muted: !state.muted }
 
     default:
       return state

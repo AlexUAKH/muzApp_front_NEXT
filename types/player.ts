@@ -6,6 +6,7 @@ export interface PlayerState {
   duration: number;
   currentTime: number;
   pause: boolean;
+  muted: boolean;
 }
 
 export enum PlayerActionTypes {
@@ -14,7 +15,8 @@ export enum PlayerActionTypes {
   SET_ACTIVE = "SET_ACTIVE",
   SET_DURATION = "SET_DURATION",
   SET_CURRENT_TIME = "SET_CURRENT_TIME",
-  SET_VOLUME = "SET_VOLUME"
+  SET_VOLUME = "SET_VOLUME",
+  SET_MUTED = "SET_MUTED"
 }
 
 interface PlayAction {
@@ -39,6 +41,9 @@ interface SetVolumeAction {
   type: PlayerActionTypes.SET_VOLUME,
   payload: number
 }
+interface SetMutedAction {
+  type: PlayerActionTypes.SET_MUTED
+}
 
 export type PlayerAction =
   PlayAction
@@ -47,3 +52,4 @@ export type PlayerAction =
   | SetDurationAction
   | SetCurrentTimeAction
   | SetVolumeAction
+  | SetMutedAction

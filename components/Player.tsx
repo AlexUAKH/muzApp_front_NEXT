@@ -11,7 +11,7 @@ import {useTypeSelector} from "../hooks/useTypeSelector";
 let audio: any;
 
 const Player: React.FC = () => {
-  const { pause, active, volume, duration, currentTime  } = useTypeSelector(state => state.player);
+  const { pause, active, volume, duration, currentTime, muted  } = useTypeSelector(state => state.player);
   const { setVolume, setCurrentTime, setDuration, pauseTrack } = useActions();
 
   const setAudio = useCallback( () => {
@@ -43,19 +43,24 @@ const Player: React.FC = () => {
     if (pause) {
       audio.pause();
     } else {
-      audio.play()
+      audio.play();
     }
   },[pause, active])
+
+  useEffect(() => {
+    audio.muted = muted;
+  }, [muted])
 
   const changeCurrentTime = (volume: number) => {
     audio.currentTime = volume;
     setCurrentTime(volume)
   }
 
-  const changeVolume = (volume: number) => {
+  const changeVolume = useCallback((volume: number) => {
+    console.log("volume")
     audio.volume = volume;
     setVolume(volume)
-  }
+  },[volume])
 
   if (active === null) return null;
 

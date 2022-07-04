@@ -19,3 +19,6 @@ export const setCurrentTime = (payload: number): PlayerAction => {
 export const setActive = (payload: ITrack): PlayerAction => {
   return {type: PlayerActionTypes.SET_ACTIVE, payload}
 }
+export const setMuted = (): PlayerAction => {
+  return {type: PlayerActionTypes.SET_MUTED}
+}
