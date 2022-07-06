@@ -8,14 +8,8 @@ import {Alert, Button} from "@mui/material";
 
 import {useRouter} from "next/router";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
-import {NextThunkDispatch, wrapper} from "../../store";
-import {fetchTrack} from "../../store/action-creators/tracks";
-
-// const tracks: ITrack[] = [
-//   {_id: 'dfffd', title: "This is a way", artist: "E-Type", listenings: 0, picture: "https://static2.tgstat.ru/channels/_0/e9/e93447afc4c119f284ff3dcef5da9d84.jpg", text: null, audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", comments:[{ _id:"4444", text: "eded", username: "rewq", created_at:443222, updated_at: 444444 }]},
-//   {_id: 'd', title: "khygyg yug yug uyg oooo pppp kkkk jjjj mmmm", artist: "E-Type", listenings: 1, picture: "https://static4.tgstat.ru/channels/_100/9f/9fd8eb1c2aacf668fba203b0a26a7046.jpg", text: null, audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", comments:[{ _id:"4444", text: "eded", username: "rewq", created_at:443222, updated_at: 444444 }]},
-//   {_id: 'd4', title: "khygyg yug yug uyg oooo pppp kkkk jjjj mmmm", artist: "E-Type", listenings: 1, picture: "https://static4.tgstat.ru/channels/_100/9f/9fd8eb1c2aacf668fba203b0a26a7046.jpg", text: null, audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", comments:[{ _id:"4444", text: "eded", username: "rewq", created_at:443222, updated_at: 444444 }]}
-// ]
+import {wrapper} from "../../store";
+import {fetchTracks} from "../../store/action-creators/tracks";
 
 const Tracks: NextPage = () => {
   const router = useRouter();
@@ -52,8 +46,6 @@ const Tracks: NextPage = () => {
 
 export default Tracks;
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  store => async () => {
-    // const dispatch = store.dispatch as NextThunkDispatch;
-    await store.dispatch(fetchTrack());
-})
+// @ts-ignore
+export const getServerSideProps = wrapper.getServerSideProps(store => async () => await store.dispatch(fetchTracks()))
+// export const getStaticProps = wrapper.getStaticProps(store => async () => await store.dispatch(fetchTracks()))

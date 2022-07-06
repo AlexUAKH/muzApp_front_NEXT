@@ -7,6 +7,7 @@ import TrackDescription from "./TrackDescription";
 import PlayControl from "./PlayControl";
 import {useActions} from "../hooks/useActions";
 import {useTypeSelector} from "../hooks/useTypeSelector";
+import {addListens} from "../services/trackService";
 
 let audio: any;
 
@@ -26,6 +27,7 @@ const Player: React.FC = () => {
       }
       audio.onended = () => {
         pauseTrack();
+        addListens(active._id);
       }
       // playTrack();
     }
@@ -86,4 +88,3 @@ const Player: React.FC = () => {
 
 export default Player;
 
-// cost: 760 + 1290

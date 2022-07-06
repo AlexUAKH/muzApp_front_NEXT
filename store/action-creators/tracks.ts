@@ -2,7 +2,7 @@ import {TrackActionsType, TracksAction} from "../../types/track";
 import {Dispatch} from "react";
 import axios from "../../api/axios";
 
-export const fetchTrack = ()  => {
+export const fetchTracks = ()  => {
   return async (dispatch: Dispatch<TracksAction>) => {
     try {
       console.log("in fetchTracks")

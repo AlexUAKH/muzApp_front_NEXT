@@ -1,7 +1,9 @@
+import React, {ChangeEventHandler, useState} from "react";
+
 interface useInputResult {
   error: boolean;
   value: string;
-  onChange: Function;
+  onChange: ChangeEventHandler;
   helperText: string;
 }
 
@@ -11,23 +13,19 @@ interface validationObject {
   maxLength?: number;
 }
 
-interface useInputProps {
-  validation?: validationObject[];
-  initialValue?: string;
-}
-
-import React, {useState} from "react";
-
-export default function useInput({initialValue = '', validation}: useInputProps): useInputResult {
+export default function useInput(initialValue: string = '', validation: validationObject): useInputResult {
   const error: boolean = false;
   const [value, setValue] = useState<string>(initialValue);
-  const [touched, setTouched] = useState<boolean>(false);
+  // const [touched, setTouched] = useState<boolean>(false);
   const [helperText, setHelperText] = useState<string>('');
+
+  console.log(validation);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
-    setTouched(true)
-    console.log("change: ", e)
+    // setTouched(true)
+    // console.log("change: ", e)
+    setHelperText('');
   }
   
   return {
